@@ -290,16 +290,16 @@ function listExtFilesWrapper() {
 // now you can use await to get the result from the wrapped api function
 // and you can use standard try-catch to handle the errors
 async function asyncCall() {
-    try {
-        const result = await listExtFilesWrapper();
-        console.log(result);
-        return result;
-        // the next line will fail
-        //const result2 = await apiFunctionWrapper("bad query");
-        //console.log(result2);
-    } catch(error) {
-        console.error("ERROR:" + error);
-    }
+  try {
+      const result = await listExtFilesWrapper();
+      console.log(result);
+      return result;
+      // the next line will fail
+      //const result2 = await apiFunctionWrapper("bad query");
+      //console.log(result2);
+  } catch(error) {
+      console.error("ERROR:" + error);
+  }
 }
 
 // call the main function

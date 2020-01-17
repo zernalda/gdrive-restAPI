@@ -62,63 +62,63 @@ function listFiles() {
                     const drive = google.drive({ version: 'v3', auth });
 
 
-                    (async function () {
+                    // (async function () {
 
-                      let res = await new Promise((resolve, reject) => {
-                        drive.files.list({
-                          pageSize: 5,
-                          fields: 'files(name, webViewLink)',
-                          orderBy: 'createdTime desc'
-                        }, function (err, res) {
-                          if (err) {
-                            reject(err);
-                          }
-                          resolve(res);
-                        });
-                      });
+                    //   let res = await new Promise((resolve, reject) => {
+                    //     drive.files.list({
+                    //       pageSize: 5,
+                    //       fields: 'files(name, webViewLink)',
+                    //       orderBy: 'createdTime desc'
+                    //     }, function (err, res) {
+                    //       if (err) {
+                    //         reject(err);
+                    //       }
+                    //       resolve(res);
+                    //     });
+                    //   });
 
-                      let data = 'Name,URL\n';
+                    //   let data = 'Name,URL\n';
 
-                      res.data.files.map(entry => {
-                        const { name, webViewLink } = entry;
-                        data += `${name},${webViewLink}\n`;
-                      });
-                      console.log(data);
+                    //   res.data.files.map(entry => {
+                    //     const { name, webViewLink } = entry;
+                    //     data += `${name},${webViewLink}\n`;
+                    //   });
+                    //   console.log(data);
 
-                      fs.writeFile('data.csv', data, (err) => {
-                        if (err) throw err;
-                        console.log('The file has been saved!');
-                      });
+                    //   fs.writeFile('data.csv', data, (err) => {
+                    //     if (err) throw err;
+                    //     console.log('The file has been saved!');
+                    //   });
 
-                    })()
+                    // })()
 
-                    // drive.files.list({
-                    //     fields: 'nextPageToken, files(id, name, kind)',
-                    // }, (err, res) => {
-                    //     //console.log(res);
-                    //     if (err) return console.log('The API returned an error: ' + err);
-                    //     const files = res.data.files;
-                    //     let listArray = [];
-                    //     if (files.length) {
-                    //         //console.log('Files:');
-                    //         files.map((file) => {
-                    //             //console.log(`${file.name} (${file.id})`);
-                    //             let fileName = `${file.name}`;
-                    //             let fileId = `${file.id}`;
-                    //             let fileKind = `${file.kind}`
-                    //             let pushValue = '{"fileName":"'+fileName+'","fileId":"'+fileId+'", "fileKind":"'+fileKind+'"}';
-                    //             listArray.push(JSON.parse(pushValue));
-                    //             //listArray.push(fileName,fileId);
-                    //         });
-                    //         console.log('Arr');
-                    //         console.log(listArray);
-                    //         resolve(listArray);
-                    //         //callback(listArray);
-                    //         //return listArray;
-                    //     } else {
-                    //         console.log('No files found.');
-                    //     }
-                    // });
+                    drive.files.list({
+                        fields: 'nextPageToken, files(id, name, kind)',
+                    }, (err, res) => {
+                        //console.log(res);
+                        if (err) return console.log('The API returned an error: ' + err);
+                        const files = res.data.files;
+                        let listArray = [];
+                        if (files.length) {
+                            //console.log('Files:');
+                            files.map((file) => {
+                                //console.log(`${file.name} (${file.id})`);
+                                let fileName = `${file.name}`;
+                                let fileId = `${file.id}`;
+                                let fileKind = `${file.kind}`
+                                let pushValue = '{"fileName":"'+fileName+'","fileId":"'+fileId+'", "fileKind":"'+fileKind+'"}';
+                                listArray.push(JSON.parse(pushValue));
+                                //listArray.push(fileName,fileId);
+                            });
+                            console.log('Arr');
+                            console.log(listArray);
+                            resolve(listArray);
+                            //callback(listArray);
+                            //return listArray;
+                        } else {
+                            console.log('No files found.');
+                        }
+                    });
 
                     //console.log(oAuth2Client);
                     //resolve(oAuth2Client)
