@@ -57,7 +57,7 @@ exports.FileList = function(req,res) {
 
 exports.PermissionList = function(req,res) {
     var resPermissionFile = require('./component-drive-permission.js');
-    resPermissionFile.permission().then(function(resDriveTest) {
+    resPermissionFile.files().then(function(resDriveTest) {
         response.ok(resDriveTest,res);
      });
     //response.ok(resListFileA,res);
