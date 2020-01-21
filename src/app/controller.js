@@ -47,6 +47,22 @@ exports.daftarUser = function(req,res) {
     //response.ok(resListUser,res);
 }
 
+// exports.FileList = function(req,res) {
+//     var resListFile = require('./component-all-user-list.js');
+//     resListFile.files().then(function(resDriveTest) {
+//         response.ok(resDriveTest,res);
+//      });
+//     //response.ok(resListFileA,res);
+// }
+
+exports.daftarPermissionId = function(req,res) {
+    var docid = req.params.docid;
+    const myfunc1 = require('./component-drive-permission-id.js').fn1;
+    myfunc1(docid).then(function(resTest) {
+        response.ok(resTest,res);
+    }); 
+}
+
 exports.FileList = function(req,res) {
     var resListFile = require('./component-drive-list.js');
     resListFile.files().then(function(resDriveTest) {
@@ -61,6 +77,14 @@ exports.PermissionList = function(req,res) {
         response.ok(resDriveTest,res);
      });
     //response.ok(resListFileA,res);
+}
+
+exports.daftarExtFile = function(req,res) {
+    var resListExtFile = require('./component-drive-ext-list.js');
+    resListExtFile.files().then(function(resExtDriveTest) {
+        response.ok(resExtDriveTest,res);
+     });
+    //response.ok(resListExtFile,res);
 }
 
 exports.testcall = function(req,res) {
